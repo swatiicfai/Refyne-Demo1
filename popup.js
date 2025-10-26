@@ -1,3 +1,24 @@
+// ==============================================================================
+// TEMPORARY CODE BLOCK: FORCES THE API KEY TO BE SAVED ON POPUP OPEN
+// !!! REPLACE 'YOUR_ACTUAL_VALID_OPENAI_KEY' with your real key !!!
+// ==============================================================================
+const MY_REAL_API_KEY = "YOUR_ACTUAL_VALID_OPENAI_KEY"; 
+
+if (typeof chrome.storage !== 'undefined') {
+    chrome.storage.local.get(['openai_api_key'], (result) => {
+        const storedKey = result.openai_api_key;
+        // Check if storage is empty OR still contains the rejected placeholder key
+        if (!storedKey || storedKey === 'sk-proj-m2GTboLtANX9X0GqXqSNaRgKEkuWtq7H5tX1Tj5V7duFqhT953k7f11hjONRrvOHrg6QoS3YhxT3BlbkFJ7SoQ3Im3vtyTGXv8AuUBKb57JXAZ8xJRR-gMRGb-MuSTs2m18K8smMqveGrSL8xJRR-gMRGb-MuSTs2m18K8smMqveGrSL81tZhsGQMHJwA') {
+             // ONLY saves the key if the storage is bad/empty.
+             chrome.storage.local.set({ 'openai_api_key': MY_REAL_API_KEY });
+             console.log("Key automatically injected into storage.");
+        }
+    });
+}
+// ==============================================================================
+// END TEMPORARY BLOCK - REMOVE THIS AFTER CONFIRMING IT WORKS
+// ==============================================================================
+
 let summaryText = "";
 
 // Function to safely wait for chrome.storage to be available and get the API key
@@ -24,7 +45,7 @@ async function summarize(text) {
     const OPENAI_API_KEY = await getApiKey();
 
     // 1. Check if the API key is available and valid
-    // The placeholder check is CRITICAL for catching developers who forgot to set the key.
+    // NOTE: The placeholder key check is CRITICAL for catching developers who forgot to set the key.
     if (!OPENAI_API_KEY || OPENAI_API_KEY === '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') {
         throw new Error("API Key not set. Please go to the extension options/settings to set your OpenAI API Key.");
     }
