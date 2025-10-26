@@ -7,7 +7,7 @@
     "activeTab",
     "scripting",
     "tts",
-    "storage"
+    "storage" <--- Make sure this is "storage" and not storage
   ],
   "action": { "default_popup": "popup.html" },
   "icons": { "128": "icons/pen.png" }
