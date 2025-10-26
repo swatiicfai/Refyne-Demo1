@@ -1,14 +1,14 @@
 // ==============================================================================
 // TEMPORARY CODE BLOCK: FORCES THE API KEY TO BE SAVED ON POPUP OPEN
-// !!! REPLACE 'YOUR_ACTUAL_VALID_OPENAI_KEY' with your real key !!!
+// !!! YOUR VALID KEY IS NOW INJECTED BELOW !!!
 // ==============================================================================
-const MY_REAL_API_KEY = "YOUR_ACTUAL_VALID_OPENAI_KEY"; 
+const MY_REAL_API_KEY = "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"; 
 
 if (typeof chrome.storage !== 'undefined') {
     chrome.storage.local.get(['openai_api_key'], (result) => {
         const storedKey = result.openai_api_key;
         // Check if storage is empty OR still contains the rejected placeholder key
-        if (!storedKey || storedKey === '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') {
+        if (!storedKey || storedKey === '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') {
              // ONLY saves the key if the storage is bad/empty.
              chrome.storage.local.set({ 'openai_api_key': MY_REAL_API_KEY });
              console.log("Key automatically injected into storage.");
@@ -103,7 +103,7 @@ document.getElementById("summarizeBtn").addEventListener("click", async () => {
     } catch (e) {
         document.getElementById("summary").innerText = "Could not access page content (missing permissions or secure page).";
         summaryText = "";
-        console.error("Scripting injection failed:", e);
+            console.error("Scripting injection failed:", e);
         return;
     }
 
