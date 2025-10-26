@@ -14,7 +14,7 @@ async function summarize(text) {
 const OPENAI_API_KEY = await getApiKey();
 
 // 1. Check if the API key is available
-if (!OPENAI_API_KEY || OPENAI_API_KEY === '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') {
+if (!OPENAI_API_KEY || OPENAI_API_KEY === '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') {
 throw new Error("API Key not set. Please go to the extension options/settings to set your OpenAI API Key.");
 }
 
